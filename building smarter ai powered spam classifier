@@ -1,0 +1,51 @@
+import numpy as np
+
+import pandas as pd
+
+from sklearn.feature_extraction.text import
+
+TfidfVectorizer
+
+from sklearn.linear_model
+
+SGDClassifier
+
+import
+
+=
+
+# Load the spam and legitimate email dataset
+
+df = pd.read_csv('spam_dataset.csv')
+
+# Extract features from the emails
+
+vectorizer = TfidfVectorizer()
+
+X = vectorizer.fit_transform(df['email'])
+
+# Split the data into training and test sets
+
+X_train,
+
+X_test,
+
+y_train,
+
+y_test
+
+train_test_split(X, df['label'], test_size=0.25)
+
+# Train the SVM classifier
+
+clf SGDClassifier()
+
+clf.fit(X_train, y_train)
+
+# Evaluate the classifier on the test set
+
+y_pred = clf.predict(X_test)
+
+accuracy = np.mean(y_pred == y_test)
+
+print('Accuracy:', accuracy)
